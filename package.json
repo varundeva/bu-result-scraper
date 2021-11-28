@@ -7,6 +7,10 @@
     "dev": "nodemon index",
     "build": "webpack"
   },
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
