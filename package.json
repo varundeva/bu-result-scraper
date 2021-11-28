@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index",
-    "build": "webpack"
+    "start": "node index.js",
+    "dev": "nodemon index"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "puppeteer": "^11.0.0"
-    
+
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
