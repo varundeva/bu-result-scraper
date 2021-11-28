@@ -7,10 +7,6 @@
     "dev": "nodemon index",
     "build": "webpack"
   },
-  "engines": {
-    "node": "12.x",
-    "npm": "6.x"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,6 +16,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "puppeteer": "^11.0.0"
+    
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
