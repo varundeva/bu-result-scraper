@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const path = require("path");
 var fs = require("fs");
+global.appRoot = path.resolve(__dirname);
 
 const { getResultData, getResultPdf } = require("./scraper/resultData");
 
@@ -14,7 +15,7 @@ app.get("/", async (req, res) => {
 app.get("/api/result-pdf/:registerNo", async (req, res) => {
   try {
     const fileName = await getResultPdf(req.params.registerNo);
-    const downloadPath = path.resolve("pdfs", fileName);
+    const downloadPath = path.resolve(`${appRoot}/pdfs`, fileName);
 
     res.download(downloadPath, (err) => {
       if (err) {
