@@ -1,8 +1,8 @@
 const cheerio = require("cheerio");
-const e = require("express");
 
-const { camelCase, has } = require("lodash");
-const { getExamRawData, savePdf } = require("./rawResultScraper");
+const { camelCase } = require("lodash");
+const { getExamRawData } = require("./rawResultScraper");
+const { savePdf } = require("./downloadPdf");
 
 dataObject = {};
 
