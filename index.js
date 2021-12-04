@@ -15,8 +15,7 @@ app.get("/", async (req, res) => {
 app.get("/api/result-pdf/:registerNo", async (req, res) => {
   try {
     const fileName = await getResultPdf(req.params.registerNo);
-    const downloadPath = `./pdfs/${fileName}`;
-    console.log("its here in index.js");
+    const downloadPath = `${__dirname}/pdfs/${fileName}`;
     res.download(downloadPath, (err) => {
       if (err) {
         console.error(err.message);
