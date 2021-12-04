@@ -5,11 +5,13 @@ const { resultRoutes } = require("./routes");
 
 const app = express();
 
+app.use(express.json());
+
+app.use("/api", resultRoutes);
+
 app.get("/", async (req, res) => {
   res.send("Server is Running...");
 });
-
-app.use("/api", resultRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening at ${process.env.PORT}`);
