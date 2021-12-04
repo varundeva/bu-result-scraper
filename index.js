@@ -15,13 +15,15 @@ app.get("/", async (req, res) => {
 app.get("/api/result-pdf/:registerNo", async (req, res) => {
   try {
     const fileName = await getResultPdf(req.params.registerNo);
-    const downloadPath = `${__dirname}/pdfs/${fileName}`;
+    const downloadPath = path.join(__dirname, `pdfs`, fileName);
     res.download(downloadPath, (err) => {
       if (err) {
         console.error(err.message);
       }
       try {
-        fs.unlinkSync(downloadPath);
+        fs.unlink(downloadPath, (err) => {
+          if (err) console.log(err);
+        });
       } catch (err) {
         console.error(err.message);
       }
