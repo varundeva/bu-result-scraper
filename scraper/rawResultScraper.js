@@ -45,7 +45,7 @@ const savePdf = async (registerNumber) => {
 
     await page.waitForSelector(".table");
     const fileName = `${registerNumber}.pdf`;
-    const savePath = `../pdfs/`, fileName;
+    const savePath = `../pdfs/${fileName}`;
     await page.pdf({
       path: savePath, // Saves pdf to disk.
       format: "A4",
