@@ -6,6 +6,16 @@ const { savePdf } = require("./downloadPdf");
 
 dataObject = {};
 
+const titleCase = (str) => {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map(function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+};
+
 const getResultData = async (registerNumber) => {
   const keys = [
     "registrationNumber",
@@ -31,8 +41,8 @@ const getResultData = async (registerNumber) => {
         .each((i, data) => {
           $(data)
             .children()
-            .each((i, j) => {
-              metaData.push($(j).text());
+            .each(async (i, j) => {
+              await metaData.push(titleCase($(j).text().trim()));
             });
         });
     });
@@ -61,7 +71,7 @@ const generateMarkSheet = async (rawData) => {
   await $(rawResults)
     .children()
     .each(async (i, el) => {
-      await resultRowsValue.push($(el).text());
+      await resultRowsValue.push($(el).text().trim());
     });
 
   const finalData = [];
