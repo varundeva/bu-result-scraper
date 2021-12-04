@@ -1,7 +1,8 @@
 const cheerio = require("cheerio");
+const e = require("express");
 
-const { camelCase } = require("lodash");
-const { getExamRawData } = require("./rawscraper");
+const { camelCase, has } = require("lodash");
+const { getExamRawData, savePdf } = require("./rawResultScraper");
 
 dataObject = {};
 
@@ -80,4 +81,13 @@ const generateMarkSheet = async (rawData) => {
   return resultsArray;
 };
 
-module.exports = { getResultData };
+const getResultPdf = async (registerNo) => {
+  const path = await savePdf(registerNo);
+  if (path) {
+    return path;
+  } else {
+    return;
+  }
+};
+
+module.exports = { getResultData, getResultPdf };
