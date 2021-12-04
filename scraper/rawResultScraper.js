@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const path = require("path");
 // const B2 = require("backblaze-b2");
 
 const getExamRawData = async (registerNumber) => {
@@ -43,14 +44,14 @@ const savePdf = async (registerNumber) => {
     await page.click("#ContentPlaceHolder1_btnSearch");
 
     await page.waitForSelector(".table");
-    const filename = `${registerNumber}.pdf`;
-
+    const fileName = `${registerNumber}.pdf`;
+    const savePath = await path.resolve("pdfs", fileName);
     await page.pdf({
-      path: `pdfs/${filename}`, // Saves pdf to disk.
+      path: savePath, // Saves pdf to disk.
       format: "A4",
       printBackground: true,
     });
-    return filename;
+    return fileName;
   } catch (e) {
     console.error(e.message);
   }
