@@ -10,18 +10,23 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/api/result-pdf/:registerNo", async (req, res) => {
-  const downloadPath = await getResultPdf(req.params.registerNo);
-  res.download(downloadPath, (err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    const fs = require("fs");
-    try {
-      fs.unlinkSync(downloadPath);
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
+  try {
+    const downloadPath = await getResultPdf(req.params.registerNo);
+    res.download(downloadPath, (err) => {
+      if (err) {
+        console.error(err.message);
+      }
+      const fs = require("fs");
+      try {
+        fs.unlinkSync(downloadPath);
+      } catch (err) {
+        console.error(err.message);
+      }
+    });
+  } catch (error) {
+    console.error(err.message);
+    res.send(err.message);
+  }
 });
 
 app.get("/api/result/:registerNo", async (req, res) => {
