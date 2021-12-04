@@ -82,9 +82,9 @@ const generateMarkSheet = async (rawData) => {
 };
 
 const getResultPdf = async (registerNo) => {
-  const path = await savePdf(registerNo);
-  if (path) {
-    return path;
+  const filename = await savePdf(registerNo);
+  if (filename) {
+    return filename;
   } else {
     return;
   }

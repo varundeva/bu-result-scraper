@@ -43,13 +43,14 @@ const savePdf = async (registerNumber) => {
     await page.click("#ContentPlaceHolder1_btnSearch");
 
     await page.waitForSelector(".table");
-    const path = `pdfs/${registerNumber}.pdf`;
+    const filename = `${registerNumber}.pdf`;
+
     await page.pdf({
-      path: path, // Saves pdf to disk.
+      path: `pdfs/${filename}`, // Saves pdf to disk.
       format: "A4",
       printBackground: true,
     });
-    return path;
+    return filename;
   } catch (e) {
     console.error(e.message);
   }

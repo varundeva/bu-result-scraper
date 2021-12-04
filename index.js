@@ -1,5 +1,7 @@
 const express = require("express");
 require("dotenv").config();
+const path = require("path");
+var fs = require("fs");
 
 const { getResultData, getResultPdf } = require("./scraper/resultData");
 
@@ -11,12 +13,12 @@ app.get("/", async (req, res) => {
 
 app.get("/api/result-pdf/:registerNo", async (req, res) => {
   try {
-    const downloadPath = await getResultPdf(req.params.registerNo);
+    const fileName = await getResultPdf(req.params.registerNo);
+    downloadPath = path.resolve("pdfs", fileName);
     res.download(downloadPath, (err) => {
       if (err) {
         console.error(err.message);
       }
-      const fs = require("fs");
       try {
         fs.unlinkSync(downloadPath);
       } catch (err) {
@@ -24,8 +26,8 @@ app.get("/api/result-pdf/:registerNo", async (req, res) => {
       }
     });
   } catch (error) {
-    console.error(err.message);
-    res.send(err.message);
+    console.error(error.message);
+    res.send(error.message);
   }
 });
 
