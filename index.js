@@ -15,6 +15,11 @@ app.get("/", async (req, res) => {
   res.send("Server is Running...");
 });
 
+app.get("/b2", async (req, res) => {
+  const { uploadBucket } = require("./util/scraper/uploadToBucket");
+  await uploadBucket();
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening at ${process.env.PORT}`);
 });

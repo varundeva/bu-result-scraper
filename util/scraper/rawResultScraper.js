@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-// const B2 = require("backblaze-b2");
 
 const getExamRawData = async (registerNumber) => {
   const browser = await puppeteer.launch({
@@ -29,27 +28,5 @@ const getExamRawData = async (registerNumber) => {
   }
   await browser.close();
 };
-
-// const uploadToBucket = async () => {
-//   const b2 = new B2({
-//     applicationKeyId: process.env.applicationKeyId,
-//     applicationKey: process.env.applicationKey,
-//   });
-
-//   try {
-//     await b2.authorize();
-//     let response = await b2.getUploadUrl({
-//       bucketId: process.env.bucketId,
-//     });
-//     const uploadResponse = await b2.uploadFile({
-//       uploadUrl: response.data.authorizationToken,
-//       uploadAuthToken: response.data.uploadUrl,
-//       fileName: `${registerNumber}.pdf`,
-//       data: `../${registerNumber}.pdf`, // this is expecting a Buffer, not an encoded string
-//     });
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// };
 
 module.exports = { getExamRawData };
