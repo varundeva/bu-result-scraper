@@ -1,3 +1,4 @@
 [[build.buildpacks]]
 uri = "heroku/nodejs"
 puppeteer = "jontewks/puppeteer"
+chrome = "https://github.com/heroku/heroku-buildpack-google-chrome"
