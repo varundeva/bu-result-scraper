@@ -14,7 +14,11 @@ const userSchema = new mongoose.Schema(
         degree: String,
         course: String,
         college: String,
-        examinationsOf: String,
+        examinationsOf: {
+          type: String,
+          unique: true,
+          required: true,
+        },
         pdfDownloadUrl: String,
         markSheet: [
           {

@@ -17,7 +17,7 @@ app.get("/", async (req, res) => {
 
 app.get("/b2", async (req, res) => {
   const { uploadBucket } = require("./util/scraper/uploadToBucket");
-  await uploadBucket();
+  await uploadBucket(req, res);
 });
 
 app.listen(process.env.PORT, () => {
