@@ -1,11 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+const { get } = require("lodash");
 
 const {
   getResultData,
   getResultPdf,
 } = require("../../util/scraper/resultData");
-const { User } = require("../../models/index");
+const { User } = require("../../models/mongodb/index");
 
 const getResultsJson = async (req, res) => {
   let { registerNo } = req.params;
@@ -22,8 +23,9 @@ const getResultsJson = async (req, res) => {
 
 const cacheNewResult = async (req, res) => {
   let data = await getResultData(req.params.registerNo);
-  const { registrationNumber, studentName } = data[0];
+  let { registrationNumber, studentName } = get(data, "0");
   let record = await User.findOne({ registrationNumber });
+  console.log(record);
   if (record === null) {
     var dataInserted = await User.create({
       registrationNumber,

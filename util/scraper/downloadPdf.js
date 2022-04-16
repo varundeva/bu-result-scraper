@@ -4,7 +4,12 @@ const path = require("path");
 const savePdf = async (registerNumber) => {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: [
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+    ],
   });
   const page = await browser.newPage();
   await page.goto(process.env.RESULT_URL);

@@ -3,7 +3,12 @@ const puppeteer = require("puppeteer");
 const getExamRawData = async (registerNumber) => {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: [
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+    ],
     ignoreDefaultArgs: ["--disable-extensions"],
   });
 

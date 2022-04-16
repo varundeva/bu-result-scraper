@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema(
+const ResultSchema = new mongoose.Schema(
   {
     registerNumber: {
       type: String,
@@ -38,5 +38,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Student", ResultSchema);
 module.exports = User;

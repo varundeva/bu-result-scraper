@@ -3,7 +3,6 @@ const express = require("express");
 require("dotenv").config();
 
 const { resultRoutes } = require("./routes");
-const { User } = require("./models");
 
 const app = express();
 
@@ -20,6 +19,6 @@ app.get("/b2", async (req, res) => {
   await uploadBucket(req, res);
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`Example app listening at ${process.env.PORT}`);
 });
